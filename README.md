@@ -1,3 +1,3 @@
 # TESTAREA-SISTEMELOR-SOFTWARE
 
-![Diagram](diagram.png)
+![Diagram](DIAGRAM.png)
