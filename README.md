@@ -1,5 +1,7 @@
 # TESTAREA-SISTEMELOR-SOFTWARE
-Diagrama noastra:
+
+Diagrama noastra:  
 ![Diagram](DIAGRAM.jpg)
-Documentatia noastra:
-![Documentatie](DOCUMENTAȚIE_1.pdf)
+
+Documentatia noastra:  
+[Vezi documentatia (PDF)](https://github.com/mariaabarbarasa/TESTAREA-SISTEMELOR-SOFTWARE/blob/main/DOCUMENTAȚIE_1.pdf)
