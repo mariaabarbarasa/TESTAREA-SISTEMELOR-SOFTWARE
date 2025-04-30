@@ -34,5 +34,3 @@ class ModuloGCD:
                 b=b-a
 
         return a%c
-    
-13,14,15,17,18,20,23,26,36
