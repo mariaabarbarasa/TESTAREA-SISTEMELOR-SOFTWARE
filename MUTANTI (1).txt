@@ -1,0 +1,992 @@
+Microsoft Windows [Version 10.0.26100.3775]
+(c) Microsoft Corporation. Toate drepturile rezervate.
+
+C:\Users\maria>"C:\Users\maria\AppData\Local\spyder-6\envs\spyder-runtime\python.exe" "C:\Users\maria\AppData\Local\spyder-6\envs\spyder-runtime\Scripts\mut.py" --target ModuloGCD --unit-test test_Mutanti1 --path "C:\Users\maria\Desktop\FACULTATE\TESTAREA SISTEMELOR SOFTWARE" --report raport.yaml --timeout-factor 5 --show-mutants
+[*] Start mutation process:
+   - targets: ModuloGCD
+   - tests: test_Mutanti1
+[*] 7 tests passed:
+   - test_Mutanti1 [0.00133 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  20:         if c <= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+- 24:             return a % c
++ 24:             return a * c
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+--------------------------------------------------------------------------------
+[0.00100 s] survived
+   - [#   2] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+- 32:                 a = a - b
++ 32:                 a = a + b
+  33:             else:
+  34:                 b = b - a
+  35:
+  36:         return a % c
+--------------------------------------------------------------------------------
+[0.00506 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#   3] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  30:
+  31:             if a > b:
+  32:                 a = a - b
+  33:             else:
+- 34:                 b = b - a
++ 34:                 b = b + a
+  35:
+  36:         return a % c
+--------------------------------------------------------------------------------
+[0.00302 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#   4] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+- 36:         return a % c
++ 36:         return a * c
+--------------------------------------------------------------------------------
+[0.00210 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#   5] ASR ModuloGCD:
+--------------------------------------------------------------------------------
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+- 29:             iterations += 1
++ 29:             iterations -= 1
+  30:
+  31:             if a > b:
+  32:                 a = a - b
+  33:             else:
+--------------------------------------------------------------------------------
+[0.00210 s] survived
+   - [#   6] COD ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (isinstance(value, int) or value <= 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00466 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#   7] COI ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if not ((not (isinstance(value, int)) or value <= 0)):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00411 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#   8] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  16:
+  17:         max_iterations = 1000
+  18:         iterations = 0
+  19:
+- 20:         if c <= 0:
++ 20:         if not (c <= 0):
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+  24:             return a % c
+--------------------------------------------------------------------------------
+[0.00300 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#   9] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  19:
+  20:         if c <= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+- 23:         if a == b:
++ 23:         if not (a == b):
+  24:             return a % c
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+--------------------------------------------------------------------------------
+[0.00190 s] killed by test_condition_coverage (test_Mutanti1.ModuloGCDTest.test_condition_coverage)
+   - [#  10] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  22:
+  23:         if a == b:
+  24:             return a % c
+  25:
+- 26:         while a != b:
++ 26:         while not (a != b):
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+--------------------------------------------------------------------------------
+[0.00201 s] killed by test_condition_coverage (test_Mutanti1.ModuloGCDTest.test_condition_coverage)
+   - [#  11] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  23:         if a == b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+- 27:             if iterations > max_iterations:
++ 27:             if not (iterations > max_iterations):
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+--------------------------------------------------------------------------------
+[0.00233 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#  12] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+- 31:             if a > b:
++ 31:             if not (a > b):
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+--------------------------------------------------------------------------------
+[0.00310 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#  13] LCR ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (not (isinstance(value, int)) and value <= 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00391 s] incompetent
+   - [#  14] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (not (isinstance(value, int)) or value >= 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00409 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#  15] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (not (isinstance(value, int)) or value < 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00100 s] survived
+   - [#  16] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  16:
+  17:         max_iterations = 1000
+  18:         iterations = 0
+  19:
+- 20:         if c <= 0:
++ 20:         if c >= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+  24:             return a % c
+--------------------------------------------------------------------------------
+[0.00202 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#  17] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  16:
+  17:         max_iterations = 1000
+  18:         iterations = 0
+  19:
+- 20:         if c <= 0:
++ 20:         if c < 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+  24:             return a % c
+--------------------------------------------------------------------------------
+[0.00101 s] survived
+   - [#  18] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  19:
+  20:         if c <= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+- 23:         if a == b:
++ 23:         if a != b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+--------------------------------------------------------------------------------
+[0.00099 s] killed by test_condition_coverage (test_Mutanti1.ModuloGCDTest.test_condition_coverage)
+   - [#  19] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  22:
+  23:         if a == b:
+  24:             return a % c
+  25:
+- 26:         while a != b:
++ 26:         while a == b:
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+--------------------------------------------------------------------------------
+[0.00200 s] killed by test_condition_coverage (test_Mutanti1.ModuloGCDTest.test_condition_coverage)
+   - [#  20] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  23:         if a == b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+- 27:             if iterations > max_iterations:
++ 27:             if iterations < max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+--------------------------------------------------------------------------------
+[0.00301 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#  21] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  23:         if a == b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+- 27:             if iterations > max_iterations:
++ 27:             if iterations >= max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+--------------------------------------------------------------------------------
+[0.00099 s] survived
+   - [#  22] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+- 31:             if a > b:
++ 31:             if a < b:
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+--------------------------------------------------------------------------------
+[0.00299 s] killed by test_boundary_values (test_Mutanti1.ModuloGCDTest.test_boundary_values)
+   - [#  23] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+- 31:             if a > b:
++ 31:             if a >= b:
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+--------------------------------------------------------------------------------
+[0.00200 s] survived
+[*] Mutation score [0.94942 s]: 72.7%
+   - all: 23
+   - killed: 16 (69.6%)
+   - survived: 6 (26.1%)
+   - incompetent: 1 (4.3%)
+   - timeout: 0 (0.0%)
+
+C:\Users\maria>"C:\Users\maria\AppData\Local\spyder-6\envs\spyder-runtime\python.exe" "C:\Users\maria\AppData\Local\spyder-6\envs\spyder-runtime\Scripts\mut.py" --target ModuloGCD --unit-test test_MutantiIA --path "C:\Users\maria\Desktop\FACULTATE\TESTAREA SISTEMELOR SOFTWARE" --report raport.yaml --timeout-factor 5 --show-mutants
+[*] Start mutation process:
+   - targets: ModuloGCD
+   - tests: test_Mutanti2
+[*] 7 tests passed:
+   - test_Mutanti2 [0.00132 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  20:         if c <= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+- 24:             return a % c
++ 24:             return a * c
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+--------------------------------------------------------------------------------
+[0.00402 s] killed by test_condition_coverage (test_Mutanti2.ModuloGCDTest.test_condition_coverage)
+   - [#   2] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+- 32:                 a = a - b
++ 32:                 a = a + b
+  33:             else:
+  34:                 b = b - a
+  35:
+  36:         return a % c
+--------------------------------------------------------------------------------
+[0.00394 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#   3] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  30:
+  31:             if a > b:
+  32:                 a = a - b
+  33:             else:
+- 34:                 b = b - a
++ 34:                 b = b + a
+  35:
+  36:         return a % c
+--------------------------------------------------------------------------------
+[0.00301 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#   4] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+- 36:         return a % c
++ 36:         return a * c
+--------------------------------------------------------------------------------
+[0.00210 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#   5] ASR ModuloGCD:
+--------------------------------------------------------------------------------
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+- 29:             iterations += 1
++ 29:             iterations -= 1
+  30:
+  31:             if a > b:
+  32:                 a = a - b
+  33:             else:
+--------------------------------------------------------------------------------
+[0.00202 s] survived
+   - [#   6] COD ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (isinstance(value, int) or value <= 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00299 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#   7] COI ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if not ((not (isinstance(value, int)) or value <= 0)):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00499 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#   8] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  16:
+  17:         max_iterations = 1000
+  18:         iterations = 0
+  19:
+- 20:         if c <= 0:
++ 20:         if not (c <= 0):
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+  24:             return a % c
+--------------------------------------------------------------------------------
+[0.00312 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#   9] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  19:
+  20:         if c <= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+- 23:         if a == b:
++ 23:         if not (a == b):
+  24:             return a % c
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+--------------------------------------------------------------------------------
+[0.00495 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  10] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  22:
+  23:         if a == b:
+  24:             return a % c
+  25:
+- 26:         while a != b:
++ 26:         while not (a != b):
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+--------------------------------------------------------------------------------
+[0.00300 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  11] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  23:         if a == b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+- 27:             if iterations > max_iterations:
++ 27:             if not (iterations > max_iterations):
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+--------------------------------------------------------------------------------
+[0.00310 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  12] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+- 31:             if a > b:
++ 31:             if not (a > b):
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+--------------------------------------------------------------------------------
+[0.00291 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  13] LCR ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (not (isinstance(value, int)) and value <= 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00309 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  14] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (not (isinstance(value, int)) or value >= 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00400 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  15] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (not (isinstance(value, int)) or value < 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00401 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  16] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  16:
+  17:         max_iterations = 1000
+  18:         iterations = 0
+  19:
+- 20:         if c <= 0:
++ 20:         if c >= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+  24:             return a % c
+--------------------------------------------------------------------------------
+[0.00350 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  17] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  16:
+  17:         max_iterations = 1000
+  18:         iterations = 0
+  19:
+- 20:         if c <= 0:
++ 20:         if c < 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+  24:             return a % c
+--------------------------------------------------------------------------------
+[0.00200 s] survived
+   - [#  18] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  19:
+  20:         if c <= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+- 23:         if a == b:
++ 23:         if a != b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+--------------------------------------------------------------------------------
+[0.00198 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  19] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  22:
+  23:         if a == b:
+  24:             return a % c
+  25:
+- 26:         while a != b:
++ 26:         while a == b:
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+--------------------------------------------------------------------------------
+[0.00100 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  20] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  23:         if a == b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+- 27:             if iterations > max_iterations:
++ 27:             if iterations < max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+--------------------------------------------------------------------------------
+[0.00301 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  21] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  23:         if a == b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+- 27:             if iterations > max_iterations:
++ 27:             if iterations >= max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+--------------------------------------------------------------------------------
+[0.00102 s] survived
+   - [#  22] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+- 31:             if a > b:
++ 31:             if a < b:
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+--------------------------------------------------------------------------------
+[0.00401 s] killed by test_boundary_values (test_Mutanti2.ModuloGCDTest.test_boundary_values)
+   - [#  23] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+- 31:             if a > b:
++ 31:             if a >= b:
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+--------------------------------------------------------------------------------
+[0.00299 s] survived
+[*] Mutation score [0.89960 s]: 82.6%
+   - all: 23
+   - killed: 19 (82.6%)
+   - survived: 4 (17.4%)
+   - incompetent: 0 (0.0%)
+   - timeout: 0 (0.0%)
+
+C:\Users\maria>"C:\Users\maria\AppData\Local\spyder-6\envs\spyder-runtime\python.exe" "C:\Users\maria\AppData\Local\spyder-6\envs\spyder-runtime\Scripts\mut.py" --target ModuloGCD --unit-test test_Mutanti2 --path "C:\Users\maria\Desktop\FACULTATE\TESTAREA SISTEMELOR SOFTWARE" --report raport.yaml --timeout-factor 5 --show-mutants
+[*] Start mutation process:
+   - targets: ModuloGCD
+   - tests: test_MutantiIA
+[*] 30 tests passed:
+   - test_MutantiIA [0.00100 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  20:         if c <= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+- 24:             return a % c
++ 24:             return a * c
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+--------------------------------------------------------------------------------
+[0.00301 s] killed by test_equal_values (test_MutantiIA.TestModuloGCDECP.test_equal_values)
+   - [#   2] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+- 32:                 a = a - b
++ 32:                 a = a + b
+  33:             else:
+  34:                 b = b - a
+  35:
+  36:         return a % c
+--------------------------------------------------------------------------------
+[0.00207 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#   3] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  30:
+  31:             if a > b:
+  32:                 a = a - b
+  33:             else:
+- 34:                 b = b - a
++ 34:                 b = b + a
+  35:
+  36:         return a % c
+--------------------------------------------------------------------------------
+[0.00237 s] killed by test_a_less_than_b (test_MutantiIA.TestModuloGCDECP.test_a_less_than_b)
+   - [#   4] AOR ModuloGCD:
+--------------------------------------------------------------------------------
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+- 36:         return a % c
++ 36:         return a * c
+--------------------------------------------------------------------------------
+[0.00000 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#   5] ASR ModuloGCD:
+--------------------------------------------------------------------------------
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+- 29:             iterations += 1
++ 29:             iterations -= 1
+  30:
+  31:             if a > b:
+  32:                 a = a - b
+  33:             else:
+--------------------------------------------------------------------------------
+[0.08283 s] killed by test_loop_max_iterations_exceeded (test_MutantiIA.TestModuloGCDECP.test_loop_max_iterations_exceeded)
+   - [#   6] COD ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (isinstance(value, int) or value <= 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00200 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#   7] COI ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if not ((not (isinstance(value, int)) or value <= 0)):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00309 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#   8] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  16:
+  17:         max_iterations = 1000
+  18:         iterations = 0
+  19:
+- 20:         if c <= 0:
++ 20:         if not (c <= 0):
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+  24:             return a % c
+--------------------------------------------------------------------------------
+[0.00400 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#   9] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  19:
+  20:         if c <= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+- 23:         if a == b:
++ 23:         if not (a == b):
+  24:             return a % c
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+--------------------------------------------------------------------------------
+[0.00300 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#  10] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  22:
+  23:         if a == b:
+  24:             return a % c
+  25:
+- 26:         while a != b:
++ 26:         while not (a != b):
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+--------------------------------------------------------------------------------
+[0.00300 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#  11] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  23:         if a == b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+- 27:             if iterations > max_iterations:
++ 27:             if not (iterations > max_iterations):
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+--------------------------------------------------------------------------------
+[0.00301 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#  12] COI ModuloGCD:
+--------------------------------------------------------------------------------
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+- 31:             if a > b:
++ 31:             if not (a > b):
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+--------------------------------------------------------------------------------
+[0.00220 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#  13] LCR ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (not (isinstance(value, int)) and value <= 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00100 s] incompetent
+   - [#  14] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (not (isinstance(value, int)) or value >= 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00200 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#  15] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+   4:         self.b = b
+   5:         self.c = c
+   6:
+   7:     def validate_integer(self, value):
+-  8:         if (not (isinstance(value, int)) or value <= 0):
++  8:         if (not (isinstance(value, int)) or value < 0):
+   9:             raise ValueError('Valorile trebuie sa fie numere naturale pozitive')
+  10:         return value
+  11:
+  12:     def cmmdc(self):
+--------------------------------------------------------------------------------
+[0.00200 s] killed by test_invalid_b_value (test_MutantiIA.TestModuloGCDECP.test_invalid_b_value)
+   - [#  16] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  16:
+  17:         max_iterations = 1000
+  18:         iterations = 0
+  19:
+- 20:         if c <= 0:
++ 20:         if c >= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+  24:             return a % c
+--------------------------------------------------------------------------------
+[0.00203 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#  17] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  16:
+  17:         max_iterations = 1000
+  18:         iterations = 0
+  19:
+- 20:         if c <= 0:
++ 20:         if c < 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+  23:         if a == b:
+  24:             return a % c
+--------------------------------------------------------------------------------
+[0.00098 s] survived
+   - [#  18] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  19:
+  20:         if c <= 0:
+  21:             raise ValueError('Modulo trebuie sa fie pozitiv')
+  22:
+- 23:         if a == b:
++ 23:         if a != b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+  27:             if iterations > max_iterations:
+--------------------------------------------------------------------------------
+[0.00100 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#  19] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  22:
+  23:         if a == b:
+  24:             return a % c
+  25:
+- 26:         while a != b:
++ 26:         while a == b:
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+--------------------------------------------------------------------------------
+[0.00096 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#  20] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  23:         if a == b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+- 27:             if iterations > max_iterations:
++ 27:             if iterations < max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+--------------------------------------------------------------------------------
+[0.00210 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#  21] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  23:         if a == b:
+  24:             return a % c
+  25:
+  26:         while a != b:
+- 27:             if iterations > max_iterations:
++ 27:             if iterations >= max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+  31:             if a > b:
+--------------------------------------------------------------------------------
+[0.00311 s] survived
+   - [#  22] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+- 31:             if a > b:
++ 31:             if a < b:
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+--------------------------------------------------------------------------------
+[0.00361 s] killed by test_a_greater_than_b (test_MutantiIA.TestModuloGCDECP.test_a_greater_than_b)
+   - [#  23] ROR ModuloGCD:
+--------------------------------------------------------------------------------
+  27:             if iterations > max_iterations:
+  28:                 raise RuntimeError('Prea multe iteratii (posibil loop infinit)')
+  29:             iterations += 1
+  30:
+- 31:             if a > b:
++ 31:             if a >= b:
+  32:                 a = a - b
+  33:             else:
+  34:                 b = b - a
+  35:
+--------------------------------------------------------------------------------
+[0.00304 s] survived
+[*] Mutation score [0.68952 s]: 86.4%
+   - all: 23
+   - killed: 19 (82.6%)
+   - survived: 3 (13.0%)
+   - incompetent: 1 (4.3%)
+   - timeout: 0 (0.0%)
