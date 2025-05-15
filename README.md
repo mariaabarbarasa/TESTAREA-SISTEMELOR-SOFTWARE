@@ -9,3 +9,6 @@ Documentatia noastra:
 
 Bibliografia noastra:
 [Bibliografia proiectului](https://github.com/mariaabarbarasa/TESTAREA-SISTEMELOR-SOFTWARE/blob/main/Bibliografie.pdf)
+
+Inregistrarea noastra:
+https://youtu.be/gSNa5QgrW2k
